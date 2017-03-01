@@ -1,0 +1,40 @@
+package email_validator.email_validator;
+
+public class EmailValidator {
+	
+	public boolean isValidEmail(String str){
+		//check @
+		int counter = 0;
+		char[] arr = str.toCharArray();
+		for (char ch : arr){
+			if(ch == '@'){
+				counter += 1;
+			}
+			if(counter > 1){
+				break;
+			}
+		}
+		
+		//two additional rules:
+		//1. check there is no comma used in the domain name part
+		//2. check there is no back slash used in the domain name part
+		
+		if(counter != 1){
+			return false;
+		}
+		else{
+			String[] strArr = str.split("@");
+			try{
+				if (strArr[1].contains(",") || strArr[1].contains("/")){
+					return false;
+				}
+				else{
+					return(counter == 1 && str.contains("."));
+				}
+			}
+			catch(ArrayIndexOutOfBoundsException e){
+				return false;
+			}
+		}	
+	}
+}
