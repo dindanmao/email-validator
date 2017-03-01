@@ -18,6 +18,9 @@ public class EmailValidatorTest  extends TestCase{
 		String invalidEmailNoAt = "test.test.com";
 		String invalidEmailTowAt = "test@test@test.com";
 		String invalidEmailNoDot = "test@testcom";
+		String invalidEmailWithComma = "test@test.c,om";
+		String invalidEmailWithSlash = "test@test.c/om";
+		String invalidEmailwoDomin = "test@";
 		
 		//check if the valid emails return true
 		assertEquals(ev.isValidEmail(validEmail), true);
@@ -27,6 +30,9 @@ public class EmailValidatorTest  extends TestCase{
 		assertEquals(ev.isValidEmail(invalidEmailNoAt), false);
 		assertEquals(ev.isValidEmail(invalidEmailTowAt), false);
 		assertEquals(ev.isValidEmail(invalidEmailNoDot), false);
+		assertEquals(ev.isValidEmail(invalidEmailWithComma), false);
+		assertEquals(ev.isValidEmail(invalidEmailWithSlash), false);
+		assertFalse(ev.isValidEmail(invalidEmailwoDomin));
 		
 	}
 	
